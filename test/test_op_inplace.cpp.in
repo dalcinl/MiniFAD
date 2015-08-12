@@ -1,0 +1,157 @@
+#define  DISABLE_WARNING_CONVERSION 1
+#include "minifadtest.hpp"
+
+template <typename ad_type> static
+void test_inplace_op() {
+#if MINIFAD_HAVE_FLOAT128
+  const __float128 oneq = __float128(1);
+#endif
+  ad_type x1 = 1;    (void)x1;
+  ad_type x2 = 1u;   (void)x2;
+  ad_type x3 = 1l;   (void)x3;
+  ad_type x4 = 1ul;  (void)x4;
+  ad_type x5 = 1.0f; (void)x5;
+  ad_type x6 = 1.0;  (void)x6;
+  ad_type x7 = 1.0l; (void)x7;
+#if MINIFAD_HAVE_FLOAT128
+  ad_type x8 = oneq; (void)x8;
+#endif
+
+#ifdef test_op_inplace_1
+  x1 = 1;    x1 += 1;    x1 -= 1;    x1 *= 1;    x1 /= 1;
+  x2 = 1u;   x2 += 1u;   x2 -= 1u;   x2 *= 1u;   x2 /= 1u;
+  x3 = 1l;   x3 += 1l;   x3 -= 1l;   x3 *= 1l;   x3 /= 1l;
+  x4 = 1ul;  x4 += 1ul;  x4 -= 1ul;  x4 *= 1ul;  x4 /= 1ul;
+  x5 = 1.0f; x5 += 1.0f; x5 -= 1.0f; x5 *= 1.0f; x5 /= 1.0f;
+  x6 = 1.0;  x6 += 1.0;  x6 -= 1.0;  x6 *= 1.0;  x6 /= 1.0;
+  x7 = 1.0l; x7 += 1.0l; x7 -= 1.0l; x7 *= 1.0l; x7 /= 1.0l;
+#if MINIFAD_HAVE_FLOAT128
+  x8 = oneq; x8 += oneq; x8 -= oneq; x8 *= oneq; x8 /= oneq;
+#endif
+#endif
+
+#ifdef test_op_inplace_2
+  x1 = x7; x1 += x7; x1 -= x7; x1 *= x7; x1 /= x7;
+  x2 = x6; x2 += x6; x2 -= x6; x2 *= x6; x2 /= x6;
+  x3 = x5; x3 += x5; x3 -= x5; x3 *= x5; x3 /= x5;
+  x4 = x4; x4 += x4; x4 -= x4; x4 *= x4; x4 /= x4;
+  x5 = x3; x5 += x3; x5 -= x3; x5 *= x3; x5 /= x3;
+  x6 = x2; x6 += x2; x6 -= x2; x6 *= x2; x6 /= x2;
+  x7 = x1; x7 += x1; x7 -= x1; x7 *= x1; x7 /= x1;
+#if MINIFAD_HAVE_FLOAT128
+  x8 = x8; x8 += x8; x8 -= x8; x8 *= x8; x8 /= x8;
+#endif
+#endif
+
+#ifdef test_op_inplace_3
+  x1 = x1 + 1;    x1 += x1 + 1;    x1 -= x1 - 1;    x1 *= x1 * 1;    x1 /= x1 / 1;
+  x2 = x2 + 1u;   x2 += x2 + 1u;   x2 -= x2 - 1u;   x2 *= x2 * 1u;   x2 /= x2 / 1u;
+  x3 = x3 + 1l;   x3 += x3 + 1l;   x3 -= x3 - 1l;   x3 *= x3 * 1l;   x3 /= x3 / 1l;
+  x4 = x4 + 1ul;  x4 += x4 + 1ul;  x4 -= x4 - 1ul;  x4 *= x4 * 1ul;  x4 /= x4 / 1ul;
+  x5 = x5 + 1.0f; x5 += x5 + 1.0f; x5 -= x5 - 1.0f; x5 *= x5 * 1.0f; x5 /= x5 / 1.0f;
+  x6 = x6 + 1.0;  x6 += x6 + 1.0;  x6 -= x6 - 1.0;  x6 *= x6 * 1.0;  x6 /= x6 / 1.0;
+  x7 = x7 + 1.0l; x7 += x7 + 1.0l; x7 -= x7 - 1.0l; x7 *= x7 * 1.0l; x7 /= x7 / 1.0l;
+#if MINIFAD_HAVE_FLOAT128
+  x8 = x8 + oneq; x8 += x8 + oneq; x8 -= x8 - oneq; x8 *= x8 * oneq; x8 /= x8 / oneq;
+#endif
+#endif
+
+#ifdef test_op_inplace_4
+  x1 = 1    + x1; x1 += 1    + x1; x1 -= 1    - x1; x1 *= 1    * x1; x1 /= 1    / x1;
+  x2 = 1u   + x2; x2 += 1u   + x2; x2 -= 1u   - x2; x2 *= 1u   * x2; x2 /= 1u   / x2;
+  x3 = 1l   + x3; x3 += 1l   + x3; x3 -= 1l   - x3; x3 *= 1l   * x3; x3 /= 1l   / x3;
+  x4 = 1ul  + x4; x4 += 1ul  + x4; x4 -= 1ul  - x4; x4 *= 1ul  * x4; x4 /= 1ul  / x4;
+  x5 = 1.0f + x5; x5 += 1.0f + x5; x5 -= 1.0f - x5; x5 *= 1.0f * x5; x5 /= 1.0f / x5;
+  x6 = 1.0  + x6; x6 += 1.0  + x6; x6 -= 1.0  - x6; x6 *= 1.0  * x6; x6 /= 1.0  / x6;
+  x7 = 1.0l + x7; x7 += 1.0l + x7; x7 -= 1.0l - x7; x7 *= 1.0l * x7; x7 /= 1.0l / x7;
+#if MINIFAD_HAVE_FLOAT128
+  x8 = oneq + x8; x8 += oneq + x8; x8 -= oneq - x8; x8 *= oneq * x8; x8 /= oneq / x8;
+#endif
+#endif
+
+#ifdef test_op_inplace_5
+  x1 = (x1 + x1) + 1;    x1 += (x1 + x1) + 1;    x1 -= (x1 - x1) - 1;    x1 *= (x1 * x1) * 1;    x1 /= (x1 / x1) / 1;
+  x2 = (x2 + x2) + 1u;   x2 += (x2 + x2) + 1u;   x2 -= (x2 - x2) - 1u;   x2 *= (x2 * x2) * 1u;   x2 /= (x2 / x2) / 1u;
+  x3 = (x3 + x3) + 1l;   x3 += (x3 + x3) + 1l;   x3 -= (x3 - x3) - 1l;   x3 *= (x3 * x3) * 1l;   x3 /= (x3 / x3) / 1l;
+  x4 = (x4 + x4) + 1ul;  x4 += (x4 + x4) + 1ul;  x4 -= (x4 - x4) - 1ul;  x4 *= (x4 * x4) * 1ul;  x4 /= (x4 / x4) / 1ul;
+  x5 = (x5 + x5) + 1.0f; x5 += (x5 + x5) + 1.0f; x5 -= (x5 - x5) - 1.0f; x5 *= (x5 * x5) * 1.0f; x5 /= (x5 / x5) / 1.0f;
+  x6 = (x6 + x6) + 1.0;  x6 += (x6 + x6) + 1.0;  x6 -= (x6 - x6) - 1.0;  x6 *= (x6 * x6) * 1.0;  x6 /= (x6 / x6) / 1.0;
+  x7 = (x7 + x7) + 1.0l; x7 += (x7 + x7) + 1.0l; x7 -= (x7 - x7) - 1.0l; x7 *= (x7 * x7) * 1.0l; x7 /= (x7 / x7) / 1.0l;
+#if MINIFAD_HAVE_FLOAT128
+  x8 = (x8 + x8) + oneq; x8 += (x8 + x8) + oneq; x8 -= (x8 - x8) - oneq; x8 *= (x8 * x8) * oneq; x8 /= (x8 / x8) / oneq;
+#endif
+#endif
+
+#ifdef test_op_inplace_6
+  x1 = 1    + (x1 + x1); x1 += 1    + (x1 + x1); x1 -= 1    - (x1 - x1); x1 *= 1    * (x1 * x1); x1 /= 1    / (x1 / x1);
+  x2 = 1u   + (x2 + x2); x2 += 1u   + (x2 + x2); x2 -= 1u   - (x2 - x2); x2 *= 1u   * (x2 * x2); x2 /= 1u   / (x2 / x2);
+  x3 = 1l   + (x3 + x3); x3 += 1l   + (x3 + x3); x3 -= 1l   - (x3 - x3); x3 *= 1l   * (x3 * x3); x3 /= 1l   / (x3 / x3);
+  x4 = 1ul  + (x4 + x4); x4 += 1ul  + (x4 + x4); x4 -= 1ul  - (x4 - x4); x4 *= 1ul  * (x4 * x4); x4 /= 1ul  / (x4 / x4);
+  x5 = 1.0f + (x5 + x5); x5 += 1.0f + (x5 + x5); x5 -= 1.0f - (x5 - x5); x5 *= 1.0f * (x5 * x5); x5 /= 1.0f / (x5 / x5);
+  x6 = 1.0  + (x6 + x6); x6 += 1.0  + (x6 + x6); x6 -= 1.0  - (x6 - x6); x6 *= 1.0  * (x6 * x6); x6 /= 1.0  / (x6 / x6);
+  x7 = 1.0l + (x7 + x7); x7 += 1.0l + (x7 + x7); x7 -= 1.0l - (x7 - x7); x7 *= 1.0l * (x7 * x7); x7 /= 1.0l / (x7 / x7);
+#if MINIFAD_HAVE_FLOAT128
+  x8 = oneq + (x8 + x8); x8 += oneq + (x8 + x8); x8 -= oneq - (x8 - x8); x8 *= oneq * (x8 * x8); x8 /= oneq / (x8 / x8);
+#endif
+#endif
+
+}
+
+template <typename value_type> static
+void test_common() {
+  typedef MiniFAD::Fad<value_type,0> ad_type_0;
+  typedef MiniFAD::Fad<value_type,1> ad_type_1;
+  typedef MiniFAD::Fad<value_type,2> ad_type_2;
+  test_inplace_op<ad_type_0>();
+  test_inplace_op<ad_type_1>();
+  test_inplace_op<ad_type_2>();
+}
+
+template <typename float_type> static
+void test_real() {
+  test_common<float_type>();
+}
+
+template <typename float_type> static
+void test_cxx_complex() {
+#if MINIFAD_HAVE_COMPLEX_CXX
+  typedef typename std::complex<float_type> complex_type;
+  test_common<complex_type>();
+#endif
+}
+
+template <typename float_type> static
+void test_c99_complex() {
+#if MINIFAD_HAVE_COMPLEX_C99
+  typedef typename c99complex<float_type>::type complex_type;
+  test_common<complex_type>();
+#endif
+}
+
+template <typename float_type> static
+void test_complex() {
+  test_cxx_complex<float_type>();
+  test_c99_complex<float_type>();
+}
+#if MINIFAD_HAVE_FLOAT128
+template <>
+void test_complex<__float128>()
+{test_c99_complex<__float128>();}
+#endif
+
+template <typename float_type> static
+void test() {
+  test_real<float_type>();
+  test_complex<float_type>();
+}
+
+int main(int,char*[])
+{
+  test< float       >();
+  test< double      >();
+  test< long double >();
+  #if MINIFAD_HAVE_FLOAT128
+  test< __float128  >();
+  #endif
+  return 0;
+}

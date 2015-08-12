@@ -1,0 +1,42 @@
+include makefile
+
+ifneq ($(findstring $(MAKEFLAGS),w),w)
+MAKEFLAGS += --no-print-directory
+endif
+
+.PHONY: test-all
+test-all:
+	@$(MAKE) test-cxx
+
+gcc   = $(if $(shell command -v g++-5),g++-5,g++)
+clang = $(if $(shell command -v clang++),clang++,)
+intel = $(if $(shell command -v icpc),icpc,)
+.PHONY: test-cxx
+test-cxx:
+ifneq ($(gcc),)
+	@$(MAKE) test-std CXX=$(gcc)
+endif
+ifneq ($(clang),)
+	@$(MAKE) test-std CXX=$(clang)
+endif
+ifneq ($(intel),)
+	@$(MAKE) test-std CXX=$(intel)
+endif
+
+
+.PHONY: test-std
+test-std:
+	@$(MAKE) test-def STD=
+	@$(MAKE) test-def STD=c++98
+	@$(MAKE) test-def STD=c++11
+
+.PHONY: test-def
+test-def:
+	$(MAKE) clean
+	$(MAKE) all run clean
+	$(MAKE) all run clean DEFINE0=MINIFAD_HAVE_TR1_CMATH
+	$(MAKE) all run clean DEFINE0=MINIFAD_HAVE_TR1_COMPLEX
+	$(MAKE) all run clean DEFINE0="MINIFAD_HAVE_TR1_CMATH MINIFAD_HAVE_TR1_COMPLEX"
+	$(MAKE) all run clean DEFINE0=MINIFAD_HAVE_COMPLEX_CXX
+	$(MAKE) all run clean DEFINE0=MINIFAD_HAVE_COMPLEX_C99
+	$(MAKE) all run clean DEFINE0="MINIFAD_HAVE_COMPLEX_CXX MINIFAD_HAVE_COMPLEX_C99"
