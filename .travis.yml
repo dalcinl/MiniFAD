@@ -8,6 +8,12 @@ env:
   - STD=c++11
   - OPT=3
   - OPT=fast
+matrix:
+  exclude:
+    - compiler: gcc
+      env: STD=c++11
+    - compiler: clang
+      env: OPT=fast
 
 sudo: false
 
