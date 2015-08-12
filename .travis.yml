@@ -1,0 +1,14 @@
+language: cpp
+compiler:
+  - gcc
+  - clang
+env:
+  - STD=
+  - STD=c++98
+  - STD=c++11
+  - OPT=3
+  - OPT=fast
+
+sudo: false
+
+script: make -C test STD=$STD OPT=$OPT
