@@ -3,7 +3,7 @@
 //#define MINIFAD_HAVE_FLOAT128 0
 //#define MINIFAD_HAVE_TR1_CMATH 0
 //#define MINIFAD_HAVE_TR1_COMPLEX 0
-//#define MINIFAD_HAVE_QUADMATH 0
+//#define MINIFAD_HAVE_LIBQUADMATH 0
 
 #ifdef __INTEL_COMPILER
 #pragma warning(disable:2012)

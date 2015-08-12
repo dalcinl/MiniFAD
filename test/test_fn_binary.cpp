@@ -145,7 +145,7 @@ int main(int,char *[])
   test< float       >();
   test< double      >();
   test< long double >();
-  #if MINIFAD_HAVE_FLOAT128 && MINIFAD_HAVE_QUADMATH
+  #if MINIFAD_HAVE_FLOAT128 && MINIFAD_HAVE_LIBQUADMATH
   test< __float128  >();
   #endif
   return 0;

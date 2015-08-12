@@ -45,11 +45,11 @@
 #  endif
 #endif
 
-#ifndef MINIFAD_HAVE_QUADMATH
+#ifndef MINIFAD_HAVE_LIBQUADMATH
 #  if defined(QUADMATH_H)
-#    define MINIFAD_HAVE_QUADMATH 1
+#    define MINIFAD_HAVE_LIBQUADMATH 1
 #  else
-#    define MINIFAD_HAVE_QUADMATH 0
+#    define MINIFAD_HAVE_LIBQUADMATH 0
 #  endif
 #endif
 
@@ -77,7 +77,7 @@
 #  include <tr1/cmath>
 #endif
 
-#if MINIFAD_HAVE_QUADMATH
+#if MINIFAD_HAVE_LIBQUADMATH
 #  include <quadmath.h>
 #endif
 
@@ -287,7 +287,7 @@ MINIFAD_FN_##ID(CMPLX,C99, __float128 , name, ::c##call##q)   //
 #undef  MINIFAD_FN_C_LQM
 #define MINIFAD_FN_C_LQM(ID,name,call) MINIFAD_FN_C_nil(ID,name,call)
 #endif
-#if !MINIFAD_HAVE_FLOAT128 || !MINIFAD_HAVE_QUADMATH
+#if !MINIFAD_HAVE_FLOAT128 || !MINIFAD_HAVE_LIBQUADMATH
 #undef  MINIFAD_FN_R_LQM
 #define MINIFAD_FN_R_LQM(ID,name,call) MINIFAD_FN_R_nil(ID,name,call)
 #undef  MINIFAD_FN_C_LQM
