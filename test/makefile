@@ -50,8 +50,8 @@ CXXFLAGS += $(STDFLAGS)
 CXXFLAGS += $(OPTFLAGS)
 CXXFLAGS += $(WARNINGS)
 ifneq ($(is_gcc)$(is_intel),)
-test_fn_binary: LDFLAGS += $(LIBQUADMATH)
-test_fn_unary:  LDFLAGS += $(LIBQUADMATH)
+test_fn_binary: LDLIBS += $(LIBQUADMATH)
+test_fn_unary:  LDLIBS += $(LIBQUADMATH)
 endif
 
 .PHONY: default
