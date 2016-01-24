@@ -55,7 +55,7 @@ test_fn_unary:  LDLIBS += $(LIBQUADMATH)
 endif
 
 .PHONY: default
-default: all run
+default: all run clean
 
 .PHONY: run
 run: $(ALLTEST)
