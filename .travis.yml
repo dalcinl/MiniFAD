@@ -5,6 +5,7 @@ compiler:
 env:
   - STD=
   - STD=c++98
+  - STD=c++03
   - STD=c++11
 
 sudo: required
