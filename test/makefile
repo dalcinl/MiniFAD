@@ -26,6 +26,9 @@ endif
 ifneq ($(is_clang),)
 WARNINGS += -Weverything
 WARNINGS += -Wno-padded
+WARNINGS += -Wno-c++98-compat
+WARNINGS += -Wno-double-promotion
+WARNINGS += -Wno-reserved-id-macro
 endif
 ifneq ($(is_intel),)
 WARNINGS += -Wall

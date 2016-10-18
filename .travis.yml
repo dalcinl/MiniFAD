@@ -7,9 +7,28 @@ env:
   - STD=c++98
   - STD=c++03
   - STD=c++11
-
 sudo: required
 dist: trusty
+
+matrix:
+ include:
+  - os: osx
+    osx_image: xcode8
+    compiler: clang
+    env: STD=c++98
+  - os: osx
+    osx_image: xcode8
+    compiler: clang
+    env: STD=c++03
+  - os: osx
+    osx_image: xcode8
+    compiler: clang
+    env: STD=c++11
+  - os: osx
+    osx_image: xcode8
+    compiler: clang
+    env: STD=c++14
+
 git:
   depth: 3
 
