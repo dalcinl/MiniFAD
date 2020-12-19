@@ -451,7 +451,7 @@ public:
 
 protected:
   value_type m_val;
-  value_type m_grd[N];
+  value_type m_grd[static_cast<unsigned>(N)];
 
   void cls()
   { for (int i=0; i<N; i++) m_grd[i] = 0.0f; }

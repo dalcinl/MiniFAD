@@ -71,7 +71,7 @@ long double Abs(const __float128 _Complex& z) {
 #endif
 #endif
 
-template <typename T, typename U> static
+template <typename T, typename U> inline
 bool close(const T& x, const U& y){
   typedef typename MiniFAD::promote<T,U>::type type;
   const type dxy = type(x) - type(y);
