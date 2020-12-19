@@ -22,6 +22,7 @@ WARNINGS += -Wsign-conversion
 #WARNINGS += -Wfloat-conversion
 WARNINGS += -Wno-padded
 WARNINGS += -Wno-psabi
+WARNINGS += -Wzero-as-null-pointer-constant
 endif
 ifneq ($(is_clang),)
 WARNINGS += -Weverything

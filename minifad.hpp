@@ -1122,7 +1122,7 @@ protected:
   { for (int i=s; i<n; i++) p[i] = 0.0f; }
 
   static T* mem(int n)
-  { return n ? static_cast<T*>(std::malloc(size_t(n)*sizeof(T))) : 0; }
+  { return n ? static_cast<T*>(std::malloc(size_t(n)*sizeof(T))) : NULL; }
   static void del(T* p)
   { std::free(p); }
 
@@ -1133,7 +1133,7 @@ protected:
       if (init) { cls(q, 0, n); }
       m_grd = q; m_num = n;
     } else if (!n) {
-      del(m_grd); m_grd = 0; m_num = 0;
+      del(m_grd); m_grd = NULL; m_num = 0;
     } else if (n > m_num ) {
       T* const q = mem(n);
       if (init) { cpy(q, m_grd, 0, m_num); cls(q, m_num, n); }
@@ -1180,7 +1180,7 @@ public:
 
   #if __cplusplus >= 201103L
   Fad(Fad&& x) : m_val(x.m_val), m_grd(x.m_grd), m_num(x.m_num)
-  { x.m_val = 0.0f; x.m_grd = 0; x.m_num = 0; }
+  { x.m_val = 0.0f; x.m_grd = NULL; x.m_num = 0; }
   #endif
 
   template <typename U, int M>
